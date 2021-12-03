@@ -36,7 +36,11 @@ app.use(express.json());
 app.use(
   session({
     secret: 'Super strong string',
-    cookie: {},
+    cookie: {
+      httpOnly: true,
+      maxAge: 86400000,
+      sameSite: 'none',
+    },
     resave: false,
     saveUninitialized: false,
     store: store,

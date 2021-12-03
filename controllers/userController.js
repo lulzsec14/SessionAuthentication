@@ -41,15 +41,9 @@ exports.loginUser = async (req, res, next) => {
   try {
     const { email, password } = data;
 
-    console.log(email, password);
-
     const findUser = await Users.findOne({ email });
 
-    console.log(findUser);
-
     if (!findUser) {
-      console.log('Here');
-
       res
         .status(404)
         .json({ success: false, error: 'No user with this email found!' });
@@ -84,12 +78,10 @@ exports.logoutUser = async (req, res, next) => {
       if (err) {
         throw err;
       }
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: 'Session destroyed successfully! and User logged Out',
-        });
+      res.status(200).json({
+        success: true,
+        message: 'Session destroyed successfully! and User logged Out',
+      });
     });
   } catch (err) {
     console.log(err.message);
